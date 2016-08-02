@@ -16,13 +16,13 @@ name（ Cookie名）可以通过$_COOKIE['name'] 进行访问
 value（Cookie的值）
 expire（过期时间）Unix时间戳格式，默认为0，表示浏览器关闭即失效
 path（有效路径）如果路径设置为'/'，则整个网站都有效
-domain（有效域）默认整个域名都有效，如果设置了'www.imooc.com',则只在www子域中有效
+domain（有效域）默认整个域名都有效，如果设置了'www.Internet.com',则只在www子域中有效
 
 ```php
 $value = 'test';
 setcookie("TestCookie", $value);
 setcookie("TestCookie", $value, time()+3600);  //有效期一小时
-setcookie("TestCookie", $value, time()+3600, "/path/", "imooc.com"); //设置路径与域
+setcookie("TestCookie", $value, time()+3600, "/path/", "Internet.com"); //设置路径与域
 ```
 
 PHP中还有一个设置Cookie的函数setrawcookie，setrawcookie跟setcookie基本一样，唯一的不同就是value值不会自动的进行urlencode，因此在需要的时候要手动的进行urlencode。
@@ -157,7 +157,7 @@ session_start();
 $userinfo = array(
     'uid'  => 10000,
     'name' => 'spark',
-    'email' => 'spark@imooc.com',
+    'email' => 'spark@Internet.com',
     'sex'  => 'man',
     'age'  => '18'
 );
@@ -169,7 +169,7 @@ $_SESSION['name'] = $userinfo['name'];
 $_SESSION['userinfo'] = $userinfo;
 
 //* 将用户数据保存到cookie中的一个简单方法 */
-$secureKey = 'imooc'; //加密密钥
+$secureKey = 'Internet'; //加密密钥
 $str = serialize($userinfo); //将用户信息序列化
 //用户信息加密前
 $str = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($secureKey), $str, MCRYPT_MODE_ECB));
